@@ -1,8 +1,21 @@
 "use client";
 
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
+    const { data: session, status } = useSession();
+    const router = useRouter();
+
+    if (status === "loading") {
+        return <p>Loading...</p>;
+    }
+
+    if (session) {
+        router.push("/users");
+        return null;
+    }
+
     return (
         <div className="flex min-h-screen items-center justify-center bg-gray-100">
             <button

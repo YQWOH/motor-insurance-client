@@ -1,17 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
-      <header className="text-center">
-        <h1 className="text-4xl font-bold text-blue-600">
-          Welcome to Zurich Motor Insurance
-        </h1>
-        <p className="mt-4 text-lg text-gray-600">
-          Get your insurance quote instantly, manage your portfolio, and submit claims easily.
-        </p>
-      </header>
+      <Header />
 
       <main className="mt-8 flex flex-col items-center space-y-4">
         <Link
@@ -31,9 +26,7 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="mt-10 text-center text-gray-500">
-        <p>&copy; 2024 Zurich Motor Insurance. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 }

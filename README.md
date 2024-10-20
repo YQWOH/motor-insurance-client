@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Motor Insurance - Frontend
 
-## Getting Started
+This is a React-based frontend application for a motor insurance website. It provides functionalities for users to log in with Google OAuth, view a list of users (with masked emails until revealed), and manage authentication status. The application is built with **Next.js**, **NextAuth.js**, **React Redux**, **Tailwind CSS**, and is Dockerized for easy deployment.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Login with Google OAuth: Users can log in using their Google accounts via NextAuth.js.
+- Protected User List: Displays users filtered by specific criteria (first name starts with "G" or last name starts with "W"). Email addresses are initially masked and can be revealed by clicking a button.
+- Session Management: Uses NextAuth.js for session management and authentication.
+- Responsive UI: Styled using Tailwind CSS.
+- Dockerized: For easy containerization and deployment.
+- API Pagination: Fetches and traverses paginated API data to display a complete list of users.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Next.js: React framework for server-side rendering and static site generation.
+- NextAuth.js: Authentication solution for Next.js applications.
+- React Redux: For state management.
+- Tailwind CSS: Utility-first CSS framework for responsive design.
+- Axios: For making API requests.
+- Docker: For containerization and deployment.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Prerequisites
 
-## Learn More
+Make sure you have the following installed:
 
-To learn more about Next.js, take a look at the following resources:
+- [Node.js](https://nodejs.org/en/) (version 18 or higher recommended)
+- [Docker](https://www.docker.com/get-started)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Configuration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The project uses environment variables to configure Google OAuth credentials and other settings.
+These variables are stored in .env.local:
 
-## Deploy on Vercel
+bash
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your-nextauth-secret
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Installation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Clone the repository**:
+
+bash
+git clone https://github.com/YQWOH/motor-insurance-client.git
+cd motor-insurance-client
+
+2. **Install dependencies and start development server**:
+
+bash
+npm install
+npm start
+
+3. **To run in docker**:
+
+- Build the Docker image and Run the Docker container:
+
+bash
+docker build -t motor-insurance-client .
+docker run -p 3000:3000 motor-insurance-client
+
+4. **If you want to run the app using Docker Compose:**:
+
+- Create a docker-compose.yml (if not already present):
+
+yaml
+version: "3.8"
+services:
+motor-insurance-client:
+build: .
+ports: - "3000:3000"
+environment:
+NEXTAUTH_URL: "http://localhost:3000"
+NEXTAUTH_SECRET: "your-nextauth-secret"
+GOOGLE_CLIENT_ID: "your-google-client-id"
+GOOGLE_CLIENT_SECRET: "your-google-client-secret"
+
+- Run the app using Docker Compose:
+
+bash
+docker-compose up --build
+
+5. **Available Scripts**:
+   In the project directory, you can run
+
+- npm start
+
+  Runs the app in development mode. Open http://localhost:3000 to view it in the browser.
+
+- npm run build
+
+  Builds the app for production in the build folder. It optimizes the build for best performance.
